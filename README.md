@@ -8,13 +8,13 @@ If the player is defeated, they have the option to start over, or to exit the pr
 The main() is currently in the TEST file until it is at a state that I feel is deliverable, so to speak.
 There are separate files and functions for leveling up, damage calculation and spell calculation, and enemy selection.
 The project is not nearing its completion, and the things I still want to implement are:
-Increasing the number of enemies and improving the progression.
-Increasing the strategy/skill level by adding more spells, having spells be learned at certain levels, and varying the enemy skills, with weighting on those as well.
-Adding status ailments such as poison, paralyze, and burn.
-Adding elemental properties and elemental strengths and weaknesses.
-Adding more stats such as defense and magic defense, as well as possibly agility for evasion.
--Incorporating stats into the enemy entities.
-Adding a shop that is accessible by running from the current battle, to purchase weapons and armor, possibly consumables. However, like older RPGs, the best items will be automatically equipped, to avoid text command inventory nonsense.
-Improving the visual display of the game in the terminal.
+- Increasing the number of enemies and improving the progression.
+- Increasing the strategy/skill level by adding more spells, having spells be learned at certain levels, and varying the enemy skills, with weighting on those as well.
+- Adding status ailments such as poison, paralyze, and burn.
+- Adding elemental properties and elemental strengths and weaknesses.
+- Adding more stats such as defense and magic defense, as well as possibly agility for evasion.
+- -Incorporating stats into the enemy entities.
+- Adding a shop that is accessible by running from the current battle, to purchase weapons and armor, possibly consumables. However, like older RPGs, the best items will be automatically equipped, to avoid text command inventory nonsense.
+- Improving the visual display of the game in the terminal.
 
 The project will last as long as my personal education in coding is ideal for it; as long as I am learning code that is useful for it. For example, when I transition to learning HTML/CSS, that will be my focus, so I will not be building games at that time.
