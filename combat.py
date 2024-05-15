@@ -77,18 +77,18 @@ def enemy_dmg_calc(x):
             print(f"* Sparkle glows radiantly and bursts. {e_damage} damage inflicted. *")
     return e_damage
 
-def cast_spell(spell, magic):
-    spell_damage = 0
-    if spell == 1:
-        #fireball
-        spell_damage = magic * int(random.choice("345"))
-        print(f"= You blasted the enemy with fire. {spell_damage} damage dealt. =")
-        return spell_damage
-    elif spell == 2:
-        #healing
-        spell_damage = (magic * int(random.choice("456"))) + magic
-        print(f"= You cast a healing spell. {spell_damage} HP recovered. =")
-        return spell_damage
+# def cast_spell(spell, magic):
+#     spell_damage = 0
+#     if spell == 1:
+#         #fireball
+#         spell_damage = magic * int(random.choice("345"))
+#         print(f"= You blasted the enemy with fire. {spell_damage} damage dealt. =")
+#         return spell_damage
+#     elif spell == 2:
+#         #healing
+#         spell_damage = (magic * int(random.choice("456"))) + magic
+#         print(f"= You cast a healing spell. {spell_damage} HP recovered. =")
+#         return spell_damage
     
 
     

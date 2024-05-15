@@ -3,6 +3,7 @@ import sys
 from combat import *
 from enemies import *
 from leveling import *
+from spells import *
 
 def combat_init():
     total_experience = 0
@@ -20,7 +21,9 @@ def combat_init():
                 enemy_choice = random.choices(enemy_id, weights=[1, 10, 10, 20, 2, 1], k = 1)
             elif battle_count >= 30:
                 enemy_choice = random.choices(enemy_id, weights=[0, 1, 1, 5, 10, 5], k = 1)
-            
+            info_message = False
+            info_message2 = False
+            info_message3 = False
             enemy_hp, enemy_message, exp_given = enemy_selector(enemy_choice)
             max_hp, max_mp, current_level, strength, magic = level_up(total_experience)
             print(f"Current level: {current_level}\nHP = {max_hp}\nMP = {max_mp}\nStrength = {strength}\nMagic = {magic}\nBattle count = {battle_count}\n\n")
@@ -35,6 +38,15 @@ def combat_init():
                     barrier_spell_count = 2
                 if buff_spell_count > 3:
                     buff_spell_count = 3
+                if current_level >= 5 and info_message == False:
+                    print(f"You learned Barrier at level 5!")
+                    info_message = True
+                if current_level >= 12 and info_message2 == False:
+                    print(f"You learned Boost at level 12!")
+                    info_message2 = True
+                if current_level >= 15 and info_message3 == False:
+                    print(f"You learned Lightning at level 15!")
+                    info_message3 = True
                 print(" ")
                 if in_combat == True and current_hp > 0:
                     try: 
@@ -60,37 +72,29 @@ def combat_init():
                                 enemy_hp = enemy_hp - damage
                                 print(f"= {damage} damage inflicted. =\n")
                             
+                        
                         elif action == 2:
-                            try:
-                                spells = (1, 2, 3, 4)
-                                spell_input = int(input(f"== Magic: 1: Fireball, 2: Heal, 3: Barrier, 4: Boost : "))
-                                if spell_input in spells:
-                                    spell = spell_input
-                                else:
-                                    raise ValueError
-                                print("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=")
-                                print(" ")
-                                if spell == 1 and current_mp >= 2:
-                                    enemy_hp = enemy_hp - cast_spell(spell, magic)
-                                    current_mp -= 2
-                                elif spell == 2 and current_mp >= 2:
-                                    current_hp = current_hp + cast_spell(spell, magic)
-                                    current_mp -= 2
-                                    if current_hp > max_hp:
-                                        current_hp = max_hp
-                                elif spell == 3 and current_mp >= 5:
-                                    barrier_spell_count += 2
-                                    current_mp -= 5
-                                    print("= You cast a protective barrier. (2 charges) =")
-                                elif spell == 4 and current_mp >= 4:
-                                    buff_spell_count = 3
-                                    current_mp -= 4
-                                    print("= You boost your offensive power. (3 charges) =")
-                                else:
-                                    print(f"= Insufficient MP. The spell failed.= ")
-                            except ValueError:
-                                print("== Spell failed! ==")
-
+                            spell, spell_damage = spells(current_level, magic, current_mp)
+                            print("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=")
+                            print(" ")
+                            if spell == "Fireball":
+                                enemy_hp = enemy_hp - spell_damage
+                                current_mp -= 2
+                            elif spell == "Heal":
+                                current_hp = current_hp + spell_damage
+                                current_mp -= 2
+                                if current_hp > max_hp:
+                                    current_hp = max_hp
+                            elif spell == "Barrier":
+                                barrier_spell_count += 2
+                                current_mp -= 5
+                            elif spell == "Boost":
+                                buff_spell_count = 3
+                                current_mp -= 4
+                            elif spell == "Lightning":
+                                enemy_hp = enemy_hp - spell_damage
+                                current_mp -= 10
+                        
                         elif action == 3:
                             current_hp += int((0.25 * max_hp) + current_level)
                             current_mp += int(0.2 * max_mp)
@@ -111,7 +115,6 @@ def combat_init():
                         print("* Enemy attacks. Your barrier negates the damage. *")
                     elif enemy_hp > 0 and in_combat == True:
                         current_hp = current_hp - enemy_dmg_calc(enemy_choice)
-
                     if current_hp <= 0:
                         print(f"=== You were defeated. ===")
                         in_combat = False
