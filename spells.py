@@ -50,7 +50,6 @@ def spells(current_level, magic, current_mp):
             
             if 1 <= spell_input <= len(spells_known):
                 spell_choice = spells_known[spell_input - 1]
-                print(spell_choice)
                 return cast_spell(spell_choice, magic, current_mp)
             else:
                 raise ValueError

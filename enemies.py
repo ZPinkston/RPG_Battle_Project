@@ -31,6 +31,11 @@ def enemy_selector(x):
         enemy_hp = 1
         enemy_message = "It is something Sparkle-y..."
         exp_given = 2000
+    elif x == [7]:
+        # Rhobunny
+        enemy_hp = 35
+        enemy_message = "It's a cute little Rhobunny!"
+        exp_given = (10)
     else:
         print("An ERROR appeared.")
     return enemy_hp, enemy_message, exp_given

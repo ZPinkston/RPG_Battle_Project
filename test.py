@@ -8,27 +8,39 @@ from spells import *
 def combat_init():
     total_experience = 0
     battle_count = 0
+    info_message = False
+    info_message2 = False
+    info_message3 = False
     while True:
         victory_statement = "The enemy perished. You won!"
         in_combat = True
         while in_combat == True:
-            enemy_id = [1, 2, 3, 4, 5, 6]
+            enemy_id = [1, 2, 3, 4, 5, 6, 7]
             if battle_count < 10:
-                enemy_choice = random.choices(enemy_id, weights=[30, 20, 10, 5, 0, 2], k = 1)
+                enemy_choice = random.choices(enemy_id, weights=[30, 20, 10, 5, 0, 2, 5], k = 1)
             elif battle_count >= 10 and battle_count < 20:
-                enemy_choice = random.choices(enemy_id, weights=[20, 20, 20, 15, 1, 2], k = 1)
+                enemy_choice = random.choices(enemy_id, weights=[20, 20, 20, 15, 1, 2, 5], k = 1)
             elif battle_count >= 20 and battle_count < 30:
-                enemy_choice = random.choices(enemy_id, weights=[1, 10, 10, 20, 2, 1], k = 1)
+                enemy_choice = random.choices(enemy_id, weights=[1, 10, 10, 20, 2, 1, 5], k = 1)
             elif battle_count >= 30:
-                enemy_choice = random.choices(enemy_id, weights=[0, 1, 1, 5, 10, 5], k = 1)
-            info_message = False
-            info_message2 = False
-            info_message3 = False
+                enemy_choice = random.choices(enemy_id, weights=[0, 1, 1, 5, 10, 5, 5], k = 1)
+
             enemy_hp, enemy_message, exp_given = enemy_selector(enemy_choice)
             max_hp, max_mp, current_level, strength, magic = level_up(total_experience)
             print(f"Current level: {current_level}\nHP = {max_hp}\nMP = {max_mp}\nStrength = {strength}\nMagic = {magic}\nBattle count = {battle_count}\n\n")
             print(f"Enemy has appeared.")
             print(enemy_message)
+
+            if current_level >= 5 and info_message == False:
+                print(f"You learned Barrier at level 5!")
+                info_message = True
+            if current_level >= 12 and info_message2 == False:
+                print(f"You learned Boost at level 12!")
+                info_message2 = True
+            if current_level >= 15 and info_message3 == False:
+                print(f"You learned Lightning at level 15!")
+                info_message3 = True
+
             current_hp = max_hp
             current_mp = max_mp
             buff_spell_count = 0
@@ -38,15 +50,6 @@ def combat_init():
                     barrier_spell_count = 2
                 if buff_spell_count > 3:
                     buff_spell_count = 3
-                if current_level >= 5 and info_message == False:
-                    print(f"You learned Barrier at level 5!")
-                    info_message = True
-                if current_level >= 12 and info_message2 == False:
-                    print(f"You learned Boost at level 12!")
-                    info_message2 = True
-                if current_level >= 15 and info_message3 == False:
-                    print(f"You learned Lightning at level 15!")
-                    info_message3 = True
                 print(" ")
                 if in_combat == True and current_hp > 0:
                     try: 
@@ -115,6 +118,7 @@ def combat_init():
                         print("* Enemy attacks. Your barrier negates the damage. *")
                     elif enemy_hp > 0 and in_combat == True:
                         current_hp = current_hp - enemy_dmg_calc(enemy_choice)
+
                     if current_hp <= 0:
                         print(f"=== You were defeated. ===")
                         in_combat = False
@@ -129,7 +133,6 @@ def combat_init():
                             print(victory_statement)
                             print(f"= You gained {exp_given} experience. =")
                             battle_count += 1
-
                     elif in_combat == True:
                         print(f"\n{current_hp} HP remaining. {current_mp} MP remaining")
                         print(f"Buffs: {buff_spell_count}; Barriers: {barrier_spell_count}")

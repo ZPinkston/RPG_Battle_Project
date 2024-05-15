@@ -75,6 +75,17 @@ def enemy_dmg_calc(x):
         elif move == 3:
             e_damage = 10
             print(f"* Sparkle glows radiantly and bursts. {e_damage} damage inflicted. *")
+    if x == [7]:
+        move = int(random.choice("123"))
+        if move == 1:
+            e_damage = 0
+            print(f"** Rhobunny is grazing! **")
+        elif move == 2:
+            e_damage = -10
+            print(f"* Rhobunny casts a heal on you. 10 HP recovered. *")
+        elif move == 3:
+            e_damage = 10
+            print(f"* Rhobunny bites gently. 10 damage inflicted. *")
     return e_damage
 
 # def cast_spell(spell, magic):
