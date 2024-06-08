@@ -1,8 +1,8 @@
 This project is a simple text-based RPG battle simulator that I am building while I am learning to code to apply the concepts.
 The user is the player character.
 Enemies are selected randomly from a weighted pool. There are currently 6 enemies with 3 moves each, one of which is the boss that, when defeated, will end the game.
-The player has 4 options in battle: Attack, Cast 1 of 4 spells, Defend to recover a little HP and MP, or Run Away.
-The four spells are: Fireball (damage), Heal(recover HP), Barrier (negate the damage from the next 2 attacks), and Boost(double attack power for the next 2 attacks).
+The player has 4 options in battle: Attack, Cast 1 of 5 spells, Defend to recover a little HP and MP, or Run Away.
+The five spells are: Fireball (damage), Heal(recover HP), Barrier (negate the damage from the next 2 attacks), Boost(double attack power for the next 2 attacks), and Lightning (high damage).
 The player currently has four stats: Max HP, Max MP, Strength, and Magic. Stats increase with level up, with the max level currently being lvl 21. Each level requires the same amount of experience as the prior level, plus 25.
 If the player is defeated, they have the option to start over, or to exit the program.
 The main() is currently in the TEST file until it is at a state that I feel is deliverable, so to speak.
